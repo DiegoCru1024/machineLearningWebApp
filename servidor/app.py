@@ -1,12 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
-
-
-@app.after_request
-def add_cors_headers(response):
-    response.headers['Access-Control-Allow-Origin'] = 'https://zesty-alpaca-99e0b5.netlify.app'
-    return response
+CORS(app, resources={r"/api/*": {"origins": "https://zesty-alpaca-99e0b5.netlify.app"}})
 
 
 @app.route('/api', methods=['POST'])
