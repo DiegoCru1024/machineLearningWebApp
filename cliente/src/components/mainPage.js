@@ -8,7 +8,7 @@ export default function MainPage() {
         e.preventDefault();
         try {
             console.log("Llamando API...")
-            const url = 'https://realestate-backend-8xns.onrender.com/api'
+            const url = 'https://realestate-backend-lq5v.onrender.com/api'
             const testData = {'id': 500, 'name': "diego"}
             const response = await axios.post(url, testData)
             console.log(response.data)
