@@ -26,6 +26,7 @@ export default function MainPage() {
                 <p>Nos complace darte la bienvenida a nuestra plataforma de venta inmobiliaria.</p>
                 </div>
             </section>
+            <button onClick={llamarAPI}>Test</button>
         </div>
     )
 }
