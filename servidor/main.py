@@ -41,7 +41,7 @@ data = {
 print("Valor predecido: ", learningModel.predecirPrecio(data, modelo))
 
 
-@app.post("/api")
+@app.get("/api")
 def api():
     return jsonify('Hola')
 
