@@ -1,12 +1,12 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 
-@app.route("/api")
+@app.route("/")
 def api():
-    return jsonify("Hola"), 200
+    return jsonify('Hola')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
