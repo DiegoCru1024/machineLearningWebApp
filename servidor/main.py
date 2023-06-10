@@ -6,8 +6,8 @@ import dataManagement, learningModel
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
-datosProcesados = dataManagement.inicializarData()
-modelo = learningModel.generarModelo(datosProcesados)
+# datosProcesados = dataManagement.inicializarData()
+# modelo = learningModel.generarModelo(datosProcesados)
 
 
 @app.post("/api/predictPrice")
@@ -48,9 +48,9 @@ def predictPrice():
 
     table = pd.DataFrame(data)
 
-    prediccion = modelo.predict(table)
+    # prediccion = modelo.predict(table)
 
-    return jsonify(prediccion.tolist())
+    return jsonify(data)
 
 
 if __name__ == "__main__":
