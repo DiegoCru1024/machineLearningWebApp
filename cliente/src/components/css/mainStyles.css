@@ -1,0 +1,40 @@
+:root {
+    --primary: #FF5F5F;
+    --secondary: #FFC371;
+    --accent: #8AC926;
+    --background: #F3EFEF;
+    --main-text: #333333;
+    --alt-text: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    font-family: "Roboto Light", sans-serif;
+}
+
+.hero-container {
+    background: rgba(0, 0, 0, 0.5) url("../img/fondo.jpg") no-repeat center;
+    background-blend-mode: multiply;
+    background-size: cover;
+    width: 100%;
+    height: 90vh;
+}
+
+.hero-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 100px;
+    color: var(--alt-text)
+}
+
+.hero-content h1{
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-content p{
+    font-size: 30px;
+}
+

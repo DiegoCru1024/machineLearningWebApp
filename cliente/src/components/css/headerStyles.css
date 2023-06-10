@@ -1,0 +1,48 @@
+header {
+    background-color: var(--background);
+    color: var(--main-text);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 75%;
+    height: 10vh;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    font-size: 20px;
+    color: var(--main-text);
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: ease-out 0.1s;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+    transition: ease-out 0.2s;
+}
+
+.action-button {
+    background: var(--accent);
+}
+
+.action-button:hover {
+    color: var(--alt-text);
+}
