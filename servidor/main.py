@@ -5,7 +5,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
-@app.route("/api")
+@app.post("/api")
 def api():
     return jsonify('Hola')
 
