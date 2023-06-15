@@ -41,6 +41,7 @@ nav ul li a:hover {
 
 .action-button {
     background: var(--accent);
+    font-weight: bolder;
 }
 
 .action-button:hover {
