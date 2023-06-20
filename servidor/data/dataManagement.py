@@ -4,7 +4,7 @@ import pandas as pd
 def inicializarData():
     # Cargamos los datos
     mainCSV = 'https://raw.githubusercontent.com/DiegoCru1024/dataSets/main/precio-inmobiliario-dataset.csv'
-    csvCols = ['Año', 'Trimestre', 'Precio en dólares corrientes', 'Distrito', 'Superficie ', 'Número de habitaciones',
+    csvCols = ['Año', 'Trimestre', 'Precio en dólares corrientes', 'Distrito', 'Superficie', 'Número de habitaciones',
                'Número de baños', 'Número de garajes', 'Piso de ubicación', 'Vista al exterior', 'Años de antigüedad']
     initialTable = pd.read_csv(mainCSV)
 
@@ -35,6 +35,9 @@ def inicializarData():
     filteredTable[csvCols[3]] = filteredTable[csvCols[3]].str.lower()
     filteredTable[csvCols[3]] = filteredTable[csvCols[3]].str.replace("la perla", "callao")
     filteredTable[csvCols[3]] = filteredTable[csvCols[3]].str.replace("bellavista", "callao")
+
+    # Almacenamos la tabla que se mostrara en la plataforma
+    platformTable = filteredTable.copy()
 
     # Diccionario utilizado para reemplazar valores
     distritos = {
@@ -96,4 +99,4 @@ def inicializarData():
 
     print(filteredTable)
 
-    return filteredTable
+    return filteredTable, platformTable

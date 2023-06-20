@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
-datosProcesados = dataManagement.inicializarData()
+datosProcesados, datosMostrados = dataManagement.inicializarData()
 modelo = modelGeneration.generateModel(datosProcesados)
 
 
@@ -39,6 +39,25 @@ def predictPrice():
     print(resultTable)
 
     return jsonify(fixedPrediccion)
+
+
+@app.get('/api/getDataFrame/')
+def getDataFrame():
+    page = int(request.args.get('pageNumber'))
+    query = request.args.get('queryString')
+    ascending = request.args.get('ascending') == 'true'
+
+    page_size = 20  # Número de filas por página
+    start_index = (page - 1) * page_size
+    end_index = start_index + page_size
+
+    if query != '' and query in datosMostrados.columns:
+        datosMostrados_sorted = datosMostrados.sort_values(by=query, ascending=not ascending)
+        data_page = datosMostrados_sorted.iloc[start_index:end_index].to_json(orient='records')
+    else:
+        data_page = datosMostrados.iloc[start_index:end_index].to_json(orient='records')
+
+    return jsonify(data_page)
 
 
 if __name__ == "__main__":

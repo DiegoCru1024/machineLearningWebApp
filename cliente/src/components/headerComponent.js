@@ -9,7 +9,7 @@ export default function HeaderComponent() {
                 <nav>
                     <ul>
                         <li><Link to="/">Inicio</Link></li>
-                        <li><Link to="/search">Buscar</Link></li>
+                        <li><Link to="/data">Datos</Link></li>
                         <li><Link to="/sales">Catálogo</Link></li>
                         <li><Link to="/predict" className='action-button'>Cotizar Inmueble</Link></li>
                     </ul>
