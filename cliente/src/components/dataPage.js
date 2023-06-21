@@ -13,10 +13,6 @@ export default function DataPage() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetchData();
-    }, [pageNumber, queryString]);
-
-    const fetchData = () => {
         const url = `https://realestate-backend-lq5v.onrender.com/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
 
         axios.get(url)
@@ -27,8 +23,7 @@ export default function DataPage() {
             .catch(error => {
                 console.log(error);
             });
-    };
-
+    }, [pageNumber, queryString]);
 
     const handleNextPage = () => {
         setPageNumber(prevPageNumber => prevPageNumber + 1);
@@ -84,15 +79,15 @@ export default function DataPage() {
                     <tbody>
                     {data.map((item, index) => (
                         <tr key={index}>
-                            <td>{item["Precio en dólares corrientes"]}</td>
-                            <td>{item["Distrito"]}</td>
-                            <td>{item["Superficie"]}</td>
-                            <td>{item["Número de habitaciones"]}</td>
-                            <td>{item["Número de baños"]}</td>
-                            <td>{item["Número de garajes"]}</td>
-                            <td>{item["Piso de ubicación"]}</td>
-                            <td>{item["Vista al exterior"]}</td>
-                            <td>{item["Años de antigüedad"]}</td>
+                            <td>{item[0]}</td>
+                            <td>{item[1]}</td>
+                            <td>{item[2]}</td>
+                            <td>{item[3]}</td>
+                            <td>{item[4]}</td>
+                            <td>{item[5]}</td>
+                            <td>{item[6]}</td>
+                            <td>{item[7]}</td>
+                            <td>{item[8]}</td>
                         </tr>
                     ))}
                     </tbody>
