@@ -23,7 +23,7 @@ export default function PredictPage() {
     const predecirPrecio = async (e) => {
         e.preventDefault()
         try {
-            const url = 'http://localhost:8080/api/predictPrice'
+            const url = 'https://realestate-backend-lq5v.onrender.com/api/predictPrice'
             const response = await axios.post(url, data)
             setError(null)
             setPrice(response.data)

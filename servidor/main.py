@@ -1,10 +1,11 @@
 import pandas as pd
+from pymongo import MongoClient
+
 import data.dataManagement as dataManagement
 import learningModel.modelGeneration as modelGeneration
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from pymongo import MongoClient
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})

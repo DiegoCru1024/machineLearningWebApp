@@ -17,7 +17,7 @@ export default function DataPage() {
     }, [pageNumber, queryString]);
 
     const fetchData = () => {
-        const url = `http://localhost:8080/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
+        const url = `https://realestate-backend-lq5v.onrender.com/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
 
         axios.get(url)
             .then(response => {
