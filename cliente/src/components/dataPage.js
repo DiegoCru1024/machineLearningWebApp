@@ -25,6 +25,7 @@ export default function DataPage() {
             });
     }, [pageNumber, queryString]);
 
+
     const handleNextPage = () => {
         setPageNumber(prevPageNumber => prevPageNumber + 1);
     };
