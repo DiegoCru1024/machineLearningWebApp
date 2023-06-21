@@ -4,12 +4,19 @@ import learningModel.modelGeneration as modelGeneration
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from pymongo import MongoClient
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 datosProcesados, datosMostrados = dataManagement.inicializarData()
 modelo = modelGeneration.generateModel(datosProcesados)
+
+# Conectamos a la base de datos
+url = 'mongodb+srv://admin:djNoTUbLHNpoo211@maincluster.a2r5y5z.mongodb.net/?retryWrites=true&w=majority'
+client = MongoClient(url)
+db = client['RealEstate']
+coleccion = db['departments']
 
 
 @app.post("/api/predictPrice")
@@ -39,6 +46,36 @@ def predictPrice():
     print(resultTable)
 
     return jsonify(fixedPrediccion)
+
+
+@app.post('/api/publishItem')
+def publishItem():
+    itemData = request.json
+    titulo = itemData['titulo']
+    precio = itemData['precio']
+    imagen = itemData['imagen']
+
+    if imagen is None:
+        return jsonify(message="Seleccione una imagen..."), 400
+
+    if precio < 0:
+        return jsonify(message="Ingrese un precio correcto..."), 400
+
+    # Verificar si ya existe un objeto con el mismo título
+    existing_item = coleccion.find_one({'titulo': titulo})
+    if existing_item:
+        return jsonify(message="El título ya está registrado..."), 400
+
+    # Si no existe, guardar el nuevo objeto
+    itemID = coleccion.insert_one(itemData).inserted_id
+    print(itemID)
+    return jsonify(message="Registrado correctamente"), 200
+
+
+@app.get('/api/getItems')
+def getItems():
+    items = list(coleccion.find({}, {'_id': 0}))
+    return jsonify(items)
 
 
 @app.get('/api/getDataFrame/')

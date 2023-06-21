@@ -70,3 +70,10 @@
     margin: 25px 0;
 }
 
+.predictionContainer button{
+    background: #dddddd;
+    margin-top: 25px;
+    width: 50%;
+    padding: 10px;
+    font-size: 20px;
+}

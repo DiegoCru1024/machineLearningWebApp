@@ -3,6 +3,7 @@ import MainPage from "./components/mainPage";
 import SearchPage from "./components/dataPage";
 import SalesPage from "./components/salesPage";
 import PredictPage from "./components/predictPage";
+import PublishPage from "./components/publishPage";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Route path="/data" element={<SearchPage/>}/>
                 <Route path="/sales" element={<SalesPage/>}/>
                 <Route path="/predict" element={<PredictPage/>}/>
+                <Route path="/publish" element={<PublishPage/>}/>
             </Routes>
         </BrowserRouter>
     );

@@ -2,10 +2,13 @@ import HeaderComponent from "./headerComponent";
 import axios from "axios";
 import styles from './css/predict.module.css'
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export default function PredictPage() {
+    const navigation = useNavigate()
     const [price, setPrice] = useState('No Data')
-    const [error, setError] = useState('');
+    const [error, setError] = useState('')
+    const [publishData, setPublishData] = useState({})
     const [data, setData] = useState({
         distrito: -1,
         superficie: -1,
@@ -24,7 +27,10 @@ export default function PredictPage() {
             const response = await axios.post(url, data)
             setError(null)
             setPrice(response.data)
-            console.log(response.data)
+            setPublishData((prevState) => ({
+                ...prevState,
+                precio: response.data
+            }))
         } catch (error) {
             setError(error.response.data.message)
             console.log(error)
@@ -32,11 +38,30 @@ export default function PredictPage() {
     }
 
     const detectarCambio = (event) => {
-        const {name, value} = event.target
-        setData(prevState => ({
+        const {name, value} = event.target;
+
+        setData((prevState) => ({
             ...prevState,
-            [name]: parseFloat(value)
-        }))
+            [name]: parseFloat(value),
+        }));
+
+        if (event.target.tagName === "SELECT") {
+            setPublishData((prevState) => ({
+                ...prevState,
+                [name]: event.target.options[event.target.selectedIndex].text,
+            }));
+        } else {
+            setPublishData((prevState) => ({
+                ...prevState,
+                [name]: parseFloat(value),
+            }));
+        }
+    };
+
+
+    const publishItem = () => {
+        localStorage.setItem('itemData', JSON.stringify(publishData))
+        navigation('/publish')
     }
 
     return (
@@ -145,6 +170,9 @@ export default function PredictPage() {
                 <div className={styles.predictionContainer}>
                     <h1>Precio predecido:</h1>
                     <h2>USD {price}</h2>
+                    {price !== 'No Data' && (
+                        <button onClick={publishItem}>Publicar</button>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,34 +1,44 @@
 import HeaderComponent from "./headerComponent";
 import styles from './css/saleStyles.module.css'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function SalesPage() {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        buscarItems().then(() => {
+            console.log("Datos recibidos...")
+        });
+    }, []);
+
+    const buscarItems = async () => {
+        try {
+            const url = 'http://localhost:8080/api/getItems';
+            const response = await axios.get(url);
+            setItems(response.data); // No es necesario JSON.parse(response)
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const renderItems = items.map((item) => (
+        <div key={item.titulo} className={styles.item}>
+            <img alt='img' src={item.imagen} />
+            <div>
+                <h2>{item.titulo}</h2>
+                <p>$ {item.precio}</p>
+            </div>
+        </div>
+    ));
+
     return (
         <div>
-            <HeaderComponent/>
+            <HeaderComponent />
             <div className={styles.salesContainer}>
                 <h1>Inmuebles en venta</h1>
                 <div className={styles.itemGrid}>
-                    <div className={styles.item}>
-                        <img src='https://picsum.photos/300/200' alt='img'/>
-                        <div>
-                            <h2>Departamento en SJL</h2>
-                            <p>$ 150000</p>
-                        </div>
-                    </div>
-                    <div className={styles.item}>
-                        <img src='https://picsum.photos/300/200' alt='img'/>
-                        <div>
-                            <h2>Departamento en SJL</h2>
-                            <p>$ 150000</p>
-                        </div>
-                    </div>
-                    <div className={styles.item}>
-                        <img src='https://picsum.photos/300/200' alt='img'/>
-                        <div>
-                            <h2>Departamento en SJL</h2>
-                            <p>$ 150000</p>
-                        </div>
-                    </div>
+                    {renderItems}
                 </div>
             </div>
         </div>
