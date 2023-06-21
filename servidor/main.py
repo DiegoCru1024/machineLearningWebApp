@@ -8,7 +8,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "https://zesty-alpaca-99e0b5.netlify.app/"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 datosProcesados, datosMostrados = dataManagement.inicializarData()
 modelo = modelGeneration.generateModel(datosProcesados)
