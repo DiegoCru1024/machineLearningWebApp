@@ -88,7 +88,7 @@ export default function DataPage() {
                             <td>{item['Número de garajes']}</td>
                             <td>{item['Piso de ubicación']}</td>
                             <td>{item['Vista al exterior']}</td>
-                            <td>{item['Años de antigüedad\n']}</td>
+                            <td>{item['Años de antigüedad']}</td>
                         </tr>
                     ))}
                     </tbody>
