@@ -13,7 +13,7 @@ export default function DataPage() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const url = `https://realestate-backend-lq5v.onrender.com/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
+        const url = 'https://realestate-backend-lq5v.onrender.com/api/getDataFrame/?pageNumber=1&queryString=undefined&ascending=undefined'
 
         axios.get(url)
             .then(response => {
