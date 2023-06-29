@@ -14,7 +14,7 @@ export default function DataPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const url = `http://localhost:8080/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
+            const url = `https://realestate-backend-lq5v.onrender.com/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
 
             try {
                 const response = await axios.get(url, { timeout: 5000 });
