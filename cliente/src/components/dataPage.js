@@ -13,18 +13,24 @@ export default function DataPage() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        console.log()
-        const url = `http://localhost:8080/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
+        const fetchData = async () => {
+            const url = `http://localhost:8080/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
 
-        axios.get(url)
-            .then(response => {
-                console.log(JSON.parse(response.data));
-                setData(JSON.parse(response.data));
-            })
-            .catch(error => {
+            try {
+                const response = await axios.get(url, { timeout: 5000 });
+                console.log(response.data);
+                setData(response.data);
+            } catch (error) {
                 console.log(error);
-            });
+            }
+        };
+
+        fetchData().then(() => {
+            console.log('Datos recibidos...')
+        })
     }, [pageNumber, queryString]);
+
+
 
 
     const handleNextPage = () => {
