@@ -18,8 +18,7 @@ export default function DataPage() {
 
             try {
                 const response = await axios.get(url, { timeout: 5000 });
-                console.log(response.data);
-                setData(response.data);
+                setData(JSON.parse(response.data));
             } catch (error) {
                 console.log(error);
             }
