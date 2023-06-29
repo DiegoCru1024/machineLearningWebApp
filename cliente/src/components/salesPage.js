@@ -14,7 +14,7 @@ export default function SalesPage() {
 
     const buscarItems = async () => {
         try {
-            const url = 'https://realestate-backend-lq5v.onrender.com/api/getItems';
+            const url = 'http://localhost:8080/api/getItems';
             const response = await axios.get(url);
             setItems(response.data); // No es necesario JSON.parse(response)
         } catch (error) {
@@ -27,7 +27,7 @@ export default function SalesPage() {
             <img alt='img' src={item.imagen} />
             <div>
                 <h2>{item.titulo}</h2>
-                <p>$ {item.precio}</p>
+                <p>Precio de Venta: ${item.precio}</p>
             </div>
         </div>
     ));

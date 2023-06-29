@@ -6,14 +6,15 @@ import styles from './css/dataStyles.module.css'
 export default function DataPage() {
     const [pageNumber, setPageNumber] = useState(1);
     const [queryString, setQueryString] = useState([{
-        query: '',
+        query: 'asd',
         ascending: false
     }]);
     const [inputPage, setInputPage] = useState('');
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        const url = `https://realestate-backend-lq5v.onrender.com/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
+        console.log()
+        const url = `http://localhost:8080/api/getDataFrame?pageNumber=${pageNumber}&queryString=${queryString.query}&ascending=${queryString.ascending}`;
 
         axios.get(url)
             .then(response => {

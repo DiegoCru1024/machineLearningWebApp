@@ -30,7 +30,7 @@ export default function PublishPage() {
             e.preventDefault();
             try {
                 data.precio = parseFloat(data.precio)
-                const url = 'https://realestate-backend-lq5v.onrender.com/api/publishItem'
+                const url = 'http://localhost:8080/api/publishItem'
                 const response = await axios.post(url, data)
                 navigation('/sales')
                 console.log(response)
