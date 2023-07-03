@@ -29,7 +29,10 @@
 }
 
 .item div{
-    padding: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .item div h2{
@@ -39,4 +42,20 @@
 
 .item div p{
     font-size: 20px;
+    text-align: justify;
+}
+
+.itemActionLine{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.itemActionLine a{
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    background: #8AC926;
+    padding: 10px;
+    border-radius: 10px;
 }

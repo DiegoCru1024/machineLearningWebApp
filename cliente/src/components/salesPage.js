@@ -1,7 +1,8 @@
 import HeaderComponent from "./headerComponent";
 import styles from './css/saleStyles.module.css'
 import axios from "axios";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function SalesPage() {
     const [items, setItems] = useState([]);
@@ -23,18 +24,22 @@ export default function SalesPage() {
     };
 
     const renderItems = items.map((item) => (
-        <div key={item.titulo} className={styles.item}>
-            <img alt='img' src={item.imagen} />
+        <div key={item.uuid} className={styles.item}>
+            <img alt='img' src={item.imagen}/>
             <div>
                 <h2>{item.titulo}</h2>
-                <p>Precio de Venta: ${item.precio}</p>
+                <p>{item.descripcion}</p>
+                <span className={styles.itemActionLine}>
+                    <h3>Precio de Venta: ${item.precio}</h3>
+                    <Link to={`/moreInfo?uuid=${item.uuid}`}>Ver Detalles</Link>
+                </span>
             </div>
         </div>
     ));
 
     return (
         <div>
-            <HeaderComponent />
+            <HeaderComponent/>
             <div className={styles.salesContainer}>
                 <h1>Inmuebles en venta</h1>
                 <div className={styles.itemGrid}>

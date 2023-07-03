@@ -1,0 +1,45 @@
+.moreInfoContainter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.infoHeaderContainer {
+    display: flex;
+    width: 60%;
+    background: #dddddd;
+    padding: 25px;
+    border-radius: 10px 10px 0 0;
+}
+
+.infoHeaderContainer img {
+    width: 500px;
+    height: 350px;
+    margin-right: 25px;
+}
+
+.infoHeaderContainer div h1 {
+    color: #8AC926;
+    text-align: justify;
+}
+
+.infoHeaderContainer div p {
+    font-size: 20px;
+    text-align: justify;
+    margin-top: 25px;
+}
+
+.infoFeaturesContainer {
+    padding: 25px;
+    background: #8AC926;
+    width: 60%;
+    border-radius: 0 0 10px 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+    color: white;
+    font-size: 20px;
+}

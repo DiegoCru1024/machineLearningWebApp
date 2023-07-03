@@ -1,4 +1,7 @@
 import pandas as pd
+import uuid
+import json
+from bson import json_util
 from pymongo import MongoClient
 
 import data.dataManagement as dataManagement
@@ -53,6 +56,7 @@ def predictPrice():
 def publishItem():
     itemData = request.json
     titulo = itemData['titulo']
+    descripcion = itemData['descripcion']
     precio = itemData['precio']
     imagen = itemData['imagen']
 
@@ -62,10 +66,17 @@ def publishItem():
     if precio < 0:
         return jsonify(message="Ingrese un precio correcto..."), 400
 
+    if descripcion == 'Descripción' or len(descripcion) < 100:
+        return jsonify(message="Ingrese una descripción de al menos 100 caracteres..."), 400
+
     # Verificar si ya existe un objeto con el mismo título
     existing_item = coleccion.find_one({'titulo': titulo})
     if existing_item:
         return jsonify(message="El título ya está registrado..."), 400
+
+    # Generar un UUID y almacenarlo en el objeto
+    item_uuid = str(uuid.uuid4())
+    itemData['uuid'] = item_uuid
 
     # Si no existe, guardar el nuevo objeto
     itemID = coleccion.insert_one(itemData).inserted_id
@@ -77,6 +88,19 @@ def publishItem():
 def getItems():
     items = list(coleccion.find({}, {'_id': 0}))
     return jsonify(items)
+
+
+@app.get('/api/getInfo')
+def getInfo():
+    uuidQuery = request.args.get('uuid')
+
+    itemInfo = coleccion.find_one({'uuid': uuidQuery})
+
+    # Excluir el campo _id del objeto itemInfo
+    itemInfo.pop('_id', None)
+
+    # Convertir el objeto itemInfo a JSON y devolverlo
+    return json.loads(json_util.dumps(itemInfo))
 
 
 @app.get('/api/getDataFrame/')

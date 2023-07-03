@@ -4,6 +4,7 @@ import SearchPage from "./components/dataPage";
 import SalesPage from "./components/salesPage";
 import PredictPage from "./components/predictPage";
 import PublishPage from "./components/publishPage";
+import MoreInfoPage from "./components/moreInfoPage";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <Route path="/sales" element={<SalesPage/>}/>
                 <Route path="/predict" element={<PredictPage/>}/>
                 <Route path="/publish" element={<PublishPage/>}/>
+                <Route path="/moreInfo" element={<MoreInfoPage/>}/>
             </Routes>
         </BrowserRouter>
     );

@@ -14,6 +14,7 @@ export default function PublishPage() {
     const [error, setError] = useState(null)
     const [data, setData] = useState({
         titulo: 'Titulo',
+        descripcion: 'Descripción',
         imagen: null,
         antiguedad: receivedData.antiguedad,
         banos: receivedData.banos,
@@ -170,6 +171,10 @@ export default function PublishPage() {
                             <div>
                                 <p>Precio de venta:</p>
                                 <input type='text' name='precio' value={data.precio} onChange={detectarCambio}/>
+                            </div>
+                            <div>
+                                <p>Descripción:</p>
+                                <textarea name='descripcion' value={data.descripcion} onChange={detectarCambio}/>
                             </div>
                         </div>
                     </div>
